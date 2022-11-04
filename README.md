@@ -25,13 +25,21 @@ Modularity, Constant Potts Model, ...
 
 ## Installation
 
-The package can be added using the Julia package manager. From the
-Julia REPL, type `]` to enter the Pkg REPL mode and execute the
-following command
+The package is currently under development and not available through 
+the package manager of `Julia`. Instead, you have to manually add the
+two dependencies of this package and the package itself:
 
 ``` julia
-pkg> add Leiden
+] add https://github.com/fcdimitr/igraph_jll.jl https://github.com/fcdimitr/leiden_jll.jl https://github.com/pitsianis/Leiden.jl 
 ```
+
+<!-- The package can be added using the Julia package manager. From the -->
+<!-- Julia REPL, type `]` to enter the Pkg REPL mode and execute the -->
+<!-- following command -->
+
+<!-- ``` julia -->
+<!-- pkg> add Leiden -->
+<!-- ``` -->
 
 ## Documentation
 

@@ -1,12 +1,8 @@
 module Leiden
 
-using SparseArrays, LinearAlgebra, Libdl
+using SparseArrays, LinearAlgebra, leiden_jll
 
 export leiden
-
-# Write your package code here.
-const PROJECT_ROOT = pkgdir(@__MODULE__)
-leiden_lib = joinpath(PROJECT_ROOT, "libleiden.$(Libdl.dlext)")
 
 include("libleiden.jl")
 

@@ -103,7 +103,7 @@ function _do_leiden( A::SparseMatrixCSC, method;
   method = method == "mod++" ? "ngrb" : method
 
   q = [Inf];
-  M = ccall( (:do_leiden, leiden_lib),
+  M = ccall( (:do_leiden, libleiden),
              Ptr{Csize_t},
              (Ptr{Cdouble},
               Ptr{Csize_t},
@@ -122,7 +122,7 @@ function _do_leiden( A::SparseMatrixCSC, method;
              size(A,1), length(i), method, γ,
              kth_root, gr_function, seed, isdirected, max_improv );
 
-  cid = unsafe_wrap( Array, M, size(A,1); own = true ).+1, -q[1]
+  cid = unsafe_wrap( Array, M, size(A,1); own = true ).+1, q[1]
 
 end
 
