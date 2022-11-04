@@ -9,14 +9,24 @@
 | [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] |
 
 
-We provide a `Julia` interface (a wrapper) to the `Leiden` community detection
-algorithm. ...
+This package is a Julia interface (i.e. a wrapper) to a software
+library, in C++ implementation, of Algorithm Leiden for community
+detection, also known as graph clustering. 
+
+For the Leiden algorithm, see the article [From Louvain to Leiden: guaranteeing well-connected communities](https://www.nature.com/articles/s41598-019-41695-z/), by V. A. Traag, L. Waltman &
+N. J. van Eck, 2019.
+
+For the software library of Algorithm Leiden, in C++ and python follow the [link](https://github.com/vtraag/leidenalg). 
+It supports several objective functions for graph clustering, including 
+Modularity, Constant Potts Model, ... 
+
+
 
 
 ## Installation
 
 The package can be added using the Julia package manager. From the
-Julia REPL, type ] to enter the Pkg REPL mode and execute the
+Julia REPL, type `]` to enter the Pkg REPL mode and execute the
 following command
 
 ``` julia
@@ -36,7 +46,8 @@ problems.
 
 ## References
 
-[1] LEIDEN REFERENCE
+[1] V. A. Traag, L. Waltman and
+N. J. van Eck, [From Louvain to Leiden: guaranteeing well-connected communities](https://www.nature.com/articles/s41598-019-41695-z/), Scientific Reports volume 9, 2019
 
 
 
