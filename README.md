@@ -18,6 +18,12 @@ It supports several objective functions for graph clustering, including
 Modularity, Constant Potts Model, ... 
 
 
+## Supported platforms
+
+`Leiden.jl` is available for the following platforms:
+
+* `macOS x86_64` (`x86_64-apple-darwin`)
+* `Linux x86_64 {libc=glibc}` (`x86_64-linux-gnu`)
 
 
 ## Installation
