@@ -1,20 +1,33 @@
 @doc raw"""
+```julia
     leiden(A::SparseMatrixCSC, method[;
            γ = 1.0, kth_root = 1, gr_function = 0,
            δa = 1.0, δr = 1.0, Ω_star = nothing,
            Ω_0 = C_NULL, list_seed = 0:9, n_iter = 2])
+```
 
-Run γ-specific search using Leiden.
+Run γ-specific search using Leiden. It returns a configuration.
 
-# Optional parameters
+# Optional parameters and their default values:
 
 - `γ = 1.0` : The value of γ
+
+- `kth_root` = 1 : ???
 
 - `gr_function = 0` : The function used in case "imod" method is
   selected. See [`leiden_func_code`](@ref) for more information.
 
 - `δa=1.0, δr=1.0` : Used when γ is normalized to get un-normalized
   value.
+
+- `Ω_star` = nothing : Best configuration found so far, do not return any 
+  configuration with worse objective???
+
+- `Ω_0 = C_NULL` : Initial configuration equivalent to Ω_v where every node is a cluster.
+
+- `list_seed = 0:9` : List of random number seeds to be used, one per run.
+
+- `n_iter = 2` : Number of successive iterations to be used per seed.
 
 """
 function leiden( args...; kwargs... )
@@ -27,7 +40,45 @@ function leiden( args...; kwargs... )
 
 end
 
+@doc raw"""
+```julia
+    leiden_multiple(A::SparseMatrixCSC, method[;
+           γ = 1.0, kth_root = 1, gr_function = 0,
+           δa = 1.0, δr = 1.0, Ω_star = nothing,
+           Ω_0 = C_NULL, list_seed = 0:9, n_iter = 2,
+           scheme = :parallel, max_improv = Inf])
+```
 
+Run γ-specific search using Leiden. It returns a configuration.
+
+# Optional parameters and their default values:
+
+- `γ = 1.0` : The value of γ
+
+- `kth_root` = 1 : ???
+
+- `gr_function = 0` : The function used in case "imod" method is
+  selected. See [`leiden_func_code`](@ref) for more information.
+
+- `δa=1.0, δr=1.0` : Used when γ is normalized to get un-normalized
+  value.
+
+- `Ω_star` = nothing : Best configuration found so far, do not return any 
+  configuration with worse objective???
+
+- `Ω_0 = C_NULL` : Initial configuration equivalent to Ω_v where every node is a cluster.
+
+- `list_seed = 0:9` : List of random number seeds to be used, one per run.
+
+- `n_iter = 2` : Number of successive iterations to be used per seed.
+
+- `scheme = :parallel` : Strategy for selecting the starting configuration. 
+  With `:parallel`, the run with each seed starts from the same initial configuration `Ω_0`.
+  With `:sequential`, the run with each seed starts from the configuration reached by the previous seed.
+
+- `max_improv = Inf` : ???
+
+"""
 function leiden_multiple(
   A::SparseMatrixCSC, method;
   γ = 1.0, kth_root = 1, gr_function = 0,
@@ -85,8 +136,31 @@ function leiden_multiple(
 end
 
 
+@doc raw"""
+```julia
+  _do_leiden(A::SparseMatrixCSC, method[;
+           γ = 1.0, kth_root = 1, gr_function = 0,
+           cid_0 = C_NULL, seed = 0, max_improv = Inf])
+```
 
+Run γ-specific search using Leiden. It returns a configuration.
 
+# Optional parameters and their default values:
+
+`γ = 1.0` : The value of γ
+
+- `kth_root` = 1 : ???
+
+- `gr_function = 0` : The function used in case "imod" method is
+  selected. See [`leiden_func_code`](@ref) for more information.
+
+- `cid_0 = C_NULL` : Initial configuration equivalent to Ω_v where every node is a cluster.
+
+- `seed = 0` : Seed for the random number generator.
+
+- `max_improv = Inf` : ???
+
+"""
 function _do_leiden( A::SparseMatrixCSC, method;
                     γ = 1.0, kth_root = 1, gr_function = 0,
                     cid_0 = C_NULL, seed = 0, max_improv = Inf)
