@@ -12,8 +12,6 @@ Run γ-specific search using Leiden. It returns a configuration.
 
 - `γ = 1.0` : The value of γ
 
-- `kth_root` = 1 : ???
-
 - `gr_function = 0` : The function used in case "imod" method is
   selected. See [`leiden_func_code`](@ref) for more information.
 
@@ -55,8 +53,6 @@ Run γ-specific search using Leiden. It returns a configuration.
 
 - `γ = 1.0` : The value of γ
 
-- `kth_root` = 1 : ???
-
 - `gr_function = 0` : The function used in case "imod" method is
   selected. See [`leiden_func_code`](@ref) for more information.
 
@@ -76,12 +72,12 @@ Run γ-specific search using Leiden. It returns a configuration.
   With `:parallel`, the run with each seed starts from the same initial configuration `Ω_0`.
   With `:sequential`, the run with each seed starts from the configuration reached by the previous seed.
 
-- `max_improv = Inf` : ???
+- `max_improv = Inf` : when Δh has reached this value, terminate the search process.
 
 """
 function leiden_multiple(
   A::SparseMatrixCSC, method;
-  γ = 1.0, kth_root = 1, gr_function = 0,
+  γ = 1.0, gr_function = 0,
   δa = 1.0, δr = 1.0, Ω_star = nothing,
   Ω_0 = C_NULL, list_seed = [0], n_iter = 1, scheme = :parallel,
   max_improv = Inf )
@@ -96,7 +92,7 @@ function leiden_multiple(
   # work from best
   if !isnothing( Ω_star )
     Ω_tmp, q_tmp = _do_leiden(
-      A, method; γ, kth_root, gr_function,
+      A, method; γ, gr_function,
       cid_0 = Ω_star, seed = list_seed[1],
       max_improv )
     push!( Ω, Ω_tmp )
@@ -117,7 +113,7 @@ function leiden_multiple(
       Ω_prev = Ω_tmp
       Ω_tmp, q_tmp = _do_leiden(
         A, method;
-        γ, kth_root, gr_function,
+        γ, gr_function,
         cid_0 = Ω_prev, seed,
         max_improv )
       if Ω_prev == Ω_tmp
@@ -139,7 +135,7 @@ end
 @doc raw"""
 ```julia
   _do_leiden(A::SparseMatrixCSC, method[;
-           γ = 1.0, kth_root = 1, gr_function = 0,
+           γ = 1.0, gr_function = 0,
            cid_0 = C_NULL, seed = 0, max_improv = Inf])
 ```
 
@@ -149,8 +145,6 @@ Run γ-specific search using Leiden. It returns a configuration.
 
 `γ = 1.0` : The value of γ
 
-- `kth_root` = 1 : ???
-
 - `gr_function = 0` : The function used in case "imod" method is
   selected. See [`leiden_func_code`](@ref) for more information.
 
@@ -158,11 +152,11 @@ Run γ-specific search using Leiden. It returns a configuration.
 
 - `seed = 0` : Seed for the random number generator.
 
-- `max_improv = Inf` : ???
+- `max_improv = Inf` : when Δh has reached this value, terminate the search process.
 
 """
 function _do_leiden( A::SparseMatrixCSC, method;
-                    γ = 1.0, kth_root = 1, gr_function = 0,
+                    γ = 1.0, gr_function = 0,
                     cid_0 = C_NULL, seed = 0, max_improv = Inf)
 
   isdirected = !issymmetric( A )
@@ -194,7 +188,7 @@ function _do_leiden( A::SparseMatrixCSC, method;
               Cdouble),
              q, E, v, cid,
              size(A,1), length(i), method, γ,
-             kth_root, gr_function, seed, isdirected, max_improv );
+             1, gr_function, seed, isdirected, max_improv );
 
   cid = unsafe_wrap( Array, M, size(A,1); own = true ).+1, q[1]
 
