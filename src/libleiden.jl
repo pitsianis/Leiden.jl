@@ -143,7 +143,7 @@ Run γ-specific search using Leiden. It returns a configuration.
 
 # Optional parameters and their default values:
 
-`γ = 1.0` : The value of γ
+- `γ = 1.0` : The value of γ
 
 - `gr_function = 0` : The function used in case "imod" method is
   selected. See [`leiden_func_code`](@ref) for more information.
@@ -190,7 +190,7 @@ function _do_leiden( A::SparseMatrixCSC, method;
              size(A,1), length(i), method, γ,
              1, gr_function, seed, isdirected, max_improv );
 
-  cid = unsafe_wrap( Array, M, size(A,1); own = true ).+1, q[1]
+  cid = unsafe_wrap( Array, M, size(A,1); own = true ).+1, -q[1]
 
 end
 
