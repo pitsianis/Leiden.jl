@@ -15,7 +15,7 @@ N. J. van Eck, 2019.
 
 For the software library of Algorithm Leiden, in C++ and python follow the [link](https://github.com/vtraag/leidenalg). 
 It supports several objective functions for graph clustering, including 
-Modularity, Constant Potts Model, ... 
+Modularity, Constant Potts Model, Suprise, and Significance.
 
 
 ## Supported platforms
