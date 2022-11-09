@@ -1,10 +1,10 @@
 # Julia Interface to Leiden
 
-
+<!--
 | **Documentation**                                                               | **Build Status**                                                                                | **Contributing** |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|:-----:|
 | [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] |
-
+-->
 
 This package is a Julia interface (i.e. a wrapper) to a software
 library, in C++ implementation, of Algorithm Leiden for community
@@ -14,8 +14,8 @@ For the Leiden algorithm, see the article [From Louvain to Leiden: guaranteeing 
 N. J. van Eck, 2019.
 
 For the software library of Algorithm Leiden, in C++ and python follow the [link](https://github.com/vtraag/leidenalg). 
-It supports several objective functions for graph clustering, including 
-Modularity, Constant Potts Model, Suprise, and Significance.
+It supports the following objective functions for graph clustering: 
+Modularity (with resolution parameter) and Constant Potts Model.
 
 
 ## Supported platforms
@@ -44,11 +44,42 @@ two dependencies of this package and the package itself:
 <!-- pkg> add Leiden -->
 <!-- ``` -->
 
+## Usage
+
+The module export a single function, `leiden`. The function is used to run 
+a γ-specific search using Leiden. It returns a clustering configuration.
+
+```julia
+    leiden(A::SparseMatrixCSC, method[;
+           γ = 1.0, kth_root = 1, gr_function = 0,
+           δa = 1.0, δr = 1.0, Ω_star = nothing,
+           Ω_0 = C_NULL, list_seed = 0:9, n_iter = 2])
+```
+
+- `method`: a `String` specifying the clustering function. Options
+  - `ngrb`: The modularity function with the resolution parameter γ.
+  - `cpm`: The Constant Potts Model with the resolution parameter γ.
+
+### Optional parameters and their default values:
+- `γ = 1.0` : The value of γ
+- `gr_function = 0` : The function used in case "imod" method is
+  selected. See [`leiden_func_code`](@ref) for more information.
+- `δa=1.0, δr=1.0` : Used when γ is normalized to get un-normalized
+  value.
+- `Ω_star` = nothing : Best configuration found so far, do not return any 
+  configuration with worse objective???
+- `Ω_0 = C_NULL` : Initial configuration equivalent to Ω_v where every node is a cluster.
+- `list_seed = 0:9` : List of random number seeds to be used, one per run.
+- `n_iter = 2` : Number of successive iterations to be used per seed.
+
+
+<!--
 ## Documentation
 
 - [**STABLE**][docs-stable-url] &mdash; **most recently tagged version of the documentation.**
 - [**LATEST**][docs-latest-url] &mdash; *in-development version of the documentation.*
 
+-->
 ## Contributing and Questions
 
 Contributions are very welcome, as are feature requests and
