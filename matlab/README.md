@@ -37,8 +37,18 @@ Once this is done, exit `Julia`.
 From within `MATLAB`, navigate to this directory and issue
 
 ``` matlab
+setenv('PATH', getenv('PATH')+"<PATH-TO-JULIA-INSTALLATION>")
 juliaInit()
 ```
+
+The `<PATH-TO-JULIA-INSTALLATION>` should point to the `bin` directory
+in the `Julia` installation folder. For example, on `macOS`, the default
+installation directory is
+
+``` matlab
+setenv('PATH', getenv('PATH')+"/Applications/Julia-1.8.app/Contents/Resources/julia/bin/")
+```
+
 
 *You need to do this once everytime you start MATLAB*
 
