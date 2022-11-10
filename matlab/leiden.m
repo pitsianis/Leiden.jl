@@ -63,6 +63,6 @@ fun_julia = ['(args...; gamma = 1.0, kwargs... ) -> ' ...
   'Leiden.leiden(args...; kwargs..., γ = gamma)' ];
 
 
-cid = double( jlcall( fun_julia, args, kwargs, 'modules', {'Graphs', 'SparseArrays', 'Leiden'}) );
+cid = double( jlcall( fun_julia, args, kwargs, 'modules', {'SparseArrays', 'Leiden'}) );
 
 end
