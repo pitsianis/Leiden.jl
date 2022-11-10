@@ -34,7 +34,13 @@ Once this is done, exit `Julia`.
 
 ## MATLAB interface
 
-From within `MATLAB`, navigate to this directory and issue
+1. From within `MATLAB`, navigate to this directory,
+
+``` matlab
+cd <LOCAL-PATH-TO-THIS-DIRECTORY>
+```
+
+2. Then, start `Julia` and connect to it via `MATLAB`,
 
 ``` matlab
 setenv('PATH', getenv('PATH')+"<PATH-TO-JULIA-INSTALLATION>")
@@ -49,10 +55,10 @@ installation directory is
 setenv('PATH', getenv('PATH')+"/Applications/Julia-1.8.app/Contents/Resources/julia/bin/")
 ```
 
+*You need to do steps 1-2 everytime you start MATLAB*
 
-*You need to do this once everytime you start MATLAB*
 
-Then you call `Leiden`, for example:
+3. Then you can call `Leiden` to communities, for example:
 
 ``` matlab
 A = sprand( 10, 10, 0.2 );
