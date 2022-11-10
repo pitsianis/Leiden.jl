@@ -34,7 +34,7 @@ Once this is done, exit `Julia`.
 
 ## MATLAB interface
 
-From within `MATLAB`, navigate the this directory and issue
+From within `MATLAB`, navigate to this directory and issue
 
 ``` matlab
 juliaInit()
@@ -45,6 +45,8 @@ juliaInit()
 Then you call `Leiden`, for example:
 
 ``` matlab
-
+A = sprand( 10, 10, 0.2 );
+cid = leiden( A );
 ```
 
+The result `cid` is the vector of membership IDs for each vertex.
