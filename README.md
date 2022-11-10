@@ -13,9 +13,11 @@ detection, also known as graph clustering.
 For the Leiden algorithm, see the article [From Louvain to Leiden: guaranteeing well-connected communities](https://www.nature.com/articles/s41598-019-41695-z/), by V. A. Traag, L. Waltman &
 N. J. van Eck, 2019.
 
-For the software library of Algorithm Leiden, in C++ and python follow the [link](https://github.com/vtraag/leidenalg). 
-It supports the following objective functions for graph clustering: 
-Modularity (with resolution parameter) and Constant Potts Model.
+For the software library of Algorithm Leiden, in C++ and python follow
+the [link](https://github.com/vtraag/leidenalg). It supports the
+following objective functions for graph clustering: Modularity (with
+resolution parameter), the Constant Potts Model, and the `imod`
+function [2].
 
 
 ## Supported platforms
@@ -51,27 +53,29 @@ a γ-specific search using Leiden. It returns a clustering configuration.
 
 ```julia
     leiden(A::SparseMatrixCSC, method[;
-           γ = 1.0, kth_root = 1, gr_function = 0,
-           δa = 1.0, δr = 1.0, Ω_star = nothing,
+           γ = 1.0, gr_function = 0,
            Ω_0 = C_NULL, list_seed = 0:9, n_iter = 2])
 ```
 
 - `method`: a `String` specifying the clustering function. Options
   - `ngrb`: The modularity function with the resolution parameter γ.
   - `cpm`: The Constant Potts Model with the resolution parameter γ.
-
+  - `imod`: The `imod` function described in [2], with the resolution parameter γ.
+  
+  
 ### Optional parameters and their default values:
 - `γ = 1.0` : The value of γ
 - `gr_function = 0` : The function used in case "imod" method is
   selected. See [`leiden_func_code`](@ref) for more information.
-- `δa=1.0, δr=1.0` : Used when γ is normalized to get un-normalized
-  value.
-- `Ω_star` = nothing : Best configuration found so far, do not return any 
-  configuration with worse objective???
 - `Ω_0 = C_NULL` : Initial configuration equivalent to Ω_v where every node is a cluster.
 - `list_seed = 0:9` : List of random number seeds to be used, one per run.
 - `n_iter = 2` : Number of successive iterations to be used per seed.
 
+
+## MATLAB
+
+A `MATLAB` wrapper is also available, under the directory `matlab`.
+Please check the [instructions in the README file](https://github.com/pitsianis/Leiden.jl/matlab).
 
 <!--
 ## Documentation
@@ -88,10 +92,15 @@ problems.
 
 ## References
 
-[1] V. A. Traag, L. Waltman and
-N. J. van Eck, [From Louvain to Leiden: guaranteeing well-connected communities](https://www.nature.com/articles/s41598-019-41695-z/), Scientific Reports volume 9, 2019
+[1] V. A. Traag, L. Waltman and N. J. van Eck, [From Louvain to
+Leiden: guaranteeing well-connected
+communities](https://www.nature.com/articles/s41598-019-41695-z/),
+Scientific Reports volume 9, 2019
 
-
+[2] T. Liu, D. Floros, N. Pitsianis and X. Sun, "[Digraph Clustering
+by the BlueRed Method](https://ieeexplore.ieee.org/document/9622834),"
+2021 IEEE High Performance Extreme Computing Conference (HPEC), 2021,
+pp. 1-7, doi: 10.1109/HPEC49654.2021.9622834.
 
 ## Contributors of the Julia interface
 

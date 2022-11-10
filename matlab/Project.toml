@@ -1,0 +1,6 @@
+[deps]
+Leiden = "8876827e-33c4-4373-8179-6e3204d93767"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+igraph_jll = "4d841945-e0c2-5143-9479-18e4f0102556"
+leiden_jll = "b3d7b256-84d9-5f32-9065-d6f1a433f499"
