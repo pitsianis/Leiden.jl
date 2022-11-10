@@ -75,7 +75,7 @@ a γ-specific search using Leiden. It returns a clustering configuration.
 ## MATLAB
 
 A `MATLAB` wrapper is also available, under the directory `matlab`.
-Please check the [instructions in the README file](https://github.com/pitsianis/Leiden.jl/matlab).
+Please check the [instructions in the README file](https://github.com/pitsianis/Leiden.jl/tree/main/matlab).
 
 <!--
 ## Documentation
