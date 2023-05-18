@@ -6,18 +6,12 @@
 | [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] |
 -->
 
-This package is a Julia interface (i.e. a wrapper) to a software
-library, in C++ implementation, of Algorithm Leiden for community
-detection, also known as graph clustering. 
+This package provides a Julia interface, (a wrapper) for the C++ implementation of the Leiden Algorithm for community detection, also known as graph clustering. 
 
-For the Leiden algorithm, see the article [From Louvain to Leiden: guaranteeing well-connected communities](https://www.nature.com/articles/s41598-019-41695-z/), by V. A. Traag, L. Waltman &
-N. J. van Eck, 2019.
+To learn more about the Leiden algorithm, see the article [From Louvain to Leiden: guaranteeing well-connected communities](https://www.nature.com/articles/s41598-019-41695-z/), by V. A. Traag, L. Waltman & N. J. van Eck, 2019.
 
-For the software library of Algorithm Leiden, in C++ and python follow
-the [link](https://github.com/vtraag/leidenalg). It supports the
-following objective functions for graph clustering: Modularity (with
-resolution parameter), the Constant Potts Model, and the `imod`
-function [2].
+For the software library implementing the Leiden algorithm in C++ and Python, please visit the following [link](https://github.com/vtraag/leidenalg). It supports the
+following objective functions for graph clustering: Modularity (with a resolution parameter), the Constant Potts Model, and the `imod` function [2].
 
 
 ## Supported platforms
