@@ -117,7 +117,7 @@ function leiden_multiple(
         cid_0 = Ω_prev, seed,
         max_improv )
       if Ω_prev == Ω_tmp
-        @warn "Leiden stabilized after $j_iter iterations."
+        @debug "Leiden stabilized after $j_iter iterations."
         break;
       end
     end
