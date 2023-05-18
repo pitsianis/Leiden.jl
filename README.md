@@ -42,7 +42,7 @@ two dependencies of this package and the package itself:
 
 ## Usage
 
-The module export a single function, `leiden`. The function is used to run 
+The module exports a single function, `leiden`. The function is used to run 
 a γ-specific search using Leiden. It returns a clustering configuration.
 
 ```julia
@@ -59,7 +59,7 @@ a γ-specific search using Leiden. It returns a clustering configuration.
   
 ### Optional parameters and their default values:
 - `γ = 1.0` : The value of γ
-- `gr_function = 0` : The function used in case "imod" method is
+- `gr_function = 0` : The function used in case the "imod" method is
   selected. See [`leiden_func_code`](@ref) for more information.
 - `Ω_0 = C_NULL` : Initial configuration equivalent to Ω_v where every node is a cluster.
 - `list_seed = 0:9` : List of random number seeds to be used, one per run.
